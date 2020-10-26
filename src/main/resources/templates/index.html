@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{usr}"></title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="#{usr}"> </h1>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <td>Id</td>
+            <td>Imie</td>
+            <td>Nazwisko</td>
+            <td>Data urodzenia</td>
+            <td>Usuwanie</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.userId}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.birthDate}"></td>
+            <td><a th:href="${'/delete/' + user.userId}">Usun uzytkownika</a> </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <a href="/adduser" th:text="#{addUsr}"></a>
+    </div>
+</div>
+
+</body>
+</html>
