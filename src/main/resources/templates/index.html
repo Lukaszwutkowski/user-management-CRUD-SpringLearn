@@ -18,6 +18,7 @@
             <td>Nazwisko</td>
             <td>Data urodzenia</td>
             <td>Usuwanie</td>
+            <td>Modyfikowanie</td>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.birthDate}"></td>
             <td><a th:href="${'/delete/' + user.userId}">Usun uzytkownika</a> </td>
+            <td><a th:href="${'/modify?id=' + user.userId}">Modyfikuj uzytkownika</a> </td>
         </tr>
         </tbody>
     </table>

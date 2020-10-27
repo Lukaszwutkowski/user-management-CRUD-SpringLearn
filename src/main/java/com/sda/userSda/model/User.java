@@ -1,10 +1,11 @@
 package com.sda.userSda.model;
 
 
+import com.sda.userSda.utils.Utils;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class User {
@@ -51,15 +52,18 @@ public class User {
     }
 
     public String getBirthDateTemp() {
+        if (birthDate != null) {
+            birthDateTemp = birthDate.format(Utils.formatter);
+        }
         return birthDateTemp;
     }
 
     public void setBirthDateTemp(String birthDateTemp) {
         this.birthDateTemp = birthDateTemp;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
-            this.birthDate = LocalDate.parse(birthDateTemp, formatter);
-        } catch (DateTimeParseException e){
+            this.birthDate = LocalDate.parse(birthDateTemp, Utils.formatter);
+        } catch (DateTimeParseException e) {
             // normal when you choose nothing
         }
     }

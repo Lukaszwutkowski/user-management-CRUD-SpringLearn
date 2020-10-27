@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -43,6 +44,16 @@ public class ThUserController {
         }
     }
 
+    @PostMapping("/modify")
+    public String modify(@Valid User user, BindingResult result){
+        if (result.hasErrors()) {
+            return "/modify-user";
+        }
+        System.out.println(user);
+        userService.modifyUser(user.getUserId(), user);
+        return "redirect:/";
+    }
+
     @GetMapping("/adduser")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
@@ -57,6 +68,12 @@ public class ThUserController {
         return "redirect:/";
     }
 
+    @GetMapping("/modify")
+    public String modifyUser(@RequestParam int id, Model model) {
+        User user = userService.getById(id);
+        model.addAttribute("user", user);
+        return "modify-user";
+    }
 
 
 }
