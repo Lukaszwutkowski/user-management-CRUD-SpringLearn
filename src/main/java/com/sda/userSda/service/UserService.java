@@ -12,5 +12,7 @@ public interface UserService {
     User addUser(User user);
     List<User> getByFirstName(String firstName);
     List<User> getByLastName(String lastName);
+    List<User> findByFirstNames(List<String> firstNames);
+    List<User> getByName(String name);
 
 }

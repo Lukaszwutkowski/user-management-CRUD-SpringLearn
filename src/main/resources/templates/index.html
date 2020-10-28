@@ -27,6 +27,7 @@
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.birthDate}"></td>
+            <td><a th:href="${'/thuser/id/' + user.userId}">Szczegoly</a></td>
             <td><a th:href="${'/delete/' + user.userId}">Usun uzytkownika</a> </td>
             <td><a th:href="${'/modify?id=' + user.userId}">Modyfikuj uzytkownika</a> </td>
         </tr>

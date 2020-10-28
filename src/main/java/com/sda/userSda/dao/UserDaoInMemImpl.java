@@ -6,10 +6,12 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 @Profile("test")
@@ -51,6 +53,32 @@ public class UserDaoInMemImpl implements UserDao {
         user.setUserId(userId);
         userMap.put(userId, user);
         return user;
+    }
+
+    @Override
+    public List<User> getByFirstName(String firstName) {
+        return getAllUsers()
+                .stream()
+                .filter(x -> x.getFirstName().toLowerCase().contains(firstName.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<User> getByLastName(String lastName) {
+        return getAllUsers()
+                .stream()
+                .filter(x -> x.getLastName().toLowerCase().contains(lastName.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<User> getByAgeBetween(int min, int max) {
+        LocalDate now = LocalDate.now();
+        return getAllUsers().stream()
+                .filter(x -> {
+                    int years = Period.between(x.getBirthDate(), now).getYears();
+                    return (years >= min && years <= max);
+                }).collect(Collectors.toList());
     }
 
     private void createUsers() {

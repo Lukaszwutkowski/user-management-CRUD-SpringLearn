@@ -34,6 +34,13 @@ public class ThUserController {
         return "index";
     }
 
+    @GetMapping("/thuser/id/{id}")
+    public String getById(@PathVariable int id, Model model) {
+        User byId = userService.getById(id);
+        model.addAttribute("user", byId);
+        return "user";
+    }
+
     @PostMapping("/")
     public String saveUser(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
@@ -52,6 +59,15 @@ public class ThUserController {
         System.out.println(user);
         userService.modifyUser(user.getUserId(), user);
         return "redirect:/";
+    }
+
+    @GetMapping("/usersin")
+    public String usersIn() {
+      //  List<String> users = List.of("Anna", "Kamil");
+      //  List<User> users1 = userService.findByFirstNames(users);
+        List<User> users1 = userService.getByName("Anna");
+        users1.forEach(System.out::println);
+        return "index";
     }
 
     @GetMapping("/adduser")

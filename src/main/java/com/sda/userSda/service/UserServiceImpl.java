@@ -2,12 +2,14 @@ package com.sda.userSda.service;
 
 import com.sda.userSda.dao.UserDao;
 import com.sda.userSda.model.User;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Profile("test")
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
@@ -43,17 +45,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getByFirstName(String firstName) {
-        return getAll()
-                .stream()
-                .filter(x -> x.getFirstName().toLowerCase().contains(firstName.toLowerCase()))
-                .collect(Collectors.toList());
+        return getByFirstName(firstName);
     }
 
     @Override
     public List<User> getByLastName(String lastName) {
-        return getAll()
-                .stream()
-                .filter(x -> x.getFirstName().toLowerCase().contains(lastName.toLowerCase()))
-                .collect(Collectors.toList());
+        return getByLastName(lastName);
+    }
+
+    @Override
+    public List<User> findByFirstNames(List<String> firstNames) {
+        return null;
+    }
+
+    @Override
+    public List<User> getByName(String name) {
+        return null;
     }
 }
