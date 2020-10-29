@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Profile("test")
@@ -59,7 +58,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getByName(String name) {
+    public List<User> getByAgeBetween(int minDate, int maxDate) {
         return null;
     }
+
 }

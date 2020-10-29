@@ -13,6 +13,6 @@ public interface UserService {
     List<User> getByFirstName(String firstName);
     List<User> getByLastName(String lastName);
     List<User> findByFirstNames(List<String> firstNames);
-    List<User> getByName(String name);
+    List<User> getByAgeBetween(int minDate, int maxDate);
 
 }

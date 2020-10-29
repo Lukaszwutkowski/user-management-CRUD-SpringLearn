@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Uzytkownik</title>
+    <title>Użytkownik</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 <div class="container">
     <h1>Uzytkownik</h1>
+
     <ul>Id <span th:text="${user.userId}"></span></ul>
-    <ul>Imie <span th:text="${user.firstName}"></span></ul>
-    <ul>Nazwisko  <span th:text="${user.lastName}"></span></ul>
+    <ul>Imię <span th:text="${user.firstName}"></span></ul>
+    <ul>Nazwisko <span th:text="${user.lastName}"></span></ul>
     <ul>Data urodzenia <span th:text="${user.birthDate}"></span></ul>
+
 </div>
 </body>
 </html>

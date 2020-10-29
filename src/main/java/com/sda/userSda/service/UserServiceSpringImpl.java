@@ -1,5 +1,6 @@
 package com.sda.userSda.service;
 
+import com.sda.userSda.dao.UserDaoJdbcImpl;
 import com.sda.userSda.dao.UserDaoSpring;
 import com.sda.userSda.model.User;
 import org.springframework.context.annotation.Profile;
@@ -15,9 +16,11 @@ import java.util.List;
 public class UserServiceSpringImpl implements UserService{
 
     private UserDaoSpring userDaoSpring;
+    private UserDaoJdbcImpl userDaoJdbc;
 
-    public UserServiceSpringImpl(UserDaoSpring userDaoSpring) {
+    public UserServiceSpringImpl(UserDaoSpring userDaoSpring, UserDaoJdbcImpl userDaoJdbc) {
         this.userDaoSpring = userDaoSpring;
+        this.userDaoJdbc = userDaoJdbc;
     }
 
     @PostConstruct
@@ -28,12 +31,15 @@ public class UserServiceSpringImpl implements UserService{
     @Override
     public List<User> getAll() {
         System.out.println("Pobieram wszystko klasa");
-        return userDaoSpring.findAll();
+       // return userDaoSpring.findAll();
+        return userDaoJdbc.getAllUsers();
     }
 
     @Override
     public User getById(int userId) {
-        return userDaoSpring.findById(userId).orElse(new User());
+
+        // return userDaoSpring.findById(userId).orElse(new User());
+        return userDaoJdbc.getUserById(userId);
     }
 
     @Override
@@ -56,7 +62,9 @@ public class UserServiceSpringImpl implements UserService{
 
     @Override
     public List<User> getByFirstName(String firstName) {
-        return userDaoSpring.getAllByFirstName(firstName);
+
+        //return userDaoSpring.getAllByFirstName(firstName);
+        return userDaoJdbc.getByFirstName(firstName);
     }
 
     @Override
@@ -70,8 +78,10 @@ public class UserServiceSpringImpl implements UserService{
     }
 
     @Override
-    public List<User> getByName(String name) {
-        return userDaoSpring.getByAge(name);
+    public List<User> getByAgeBetween(int min, int max) {
+        LocalDate minDate = LocalDate.now().minusYears(max);
+        LocalDate maxDate = LocalDate.now().minusYears(min);
+        return userDaoSpring.getByAge(minDate, maxDate);
     }
 
     private void createUsers() {

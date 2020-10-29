@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>By Age</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<form class="form-group" th:object="${age}" th:action="@{/usersin}" th:method="post">
+    <div>
+        <label>Minimalny wiek: </label>
+        <input type="number" th:field="*{minAge}">
+    </div>
+    <div>
+        <label>Maksymalny wiek: </label>
+        <input type="text" th:field="*{maxAge}">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-dark">Szukaj</button>
+    </div>
+</form>
+
+</body>
+</html>

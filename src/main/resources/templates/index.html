@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{usr}"></title>
@@ -8,17 +8,18 @@
 </head>
 <body>
 <div class="container">
-    <h1 th:text="#{usr}"> </h1>
-
+    <h1 th:text="#{usr}"></h1>
     <table class="table">
-        <thead class="thead-dark">
-        <tr>
+        <thead>
+        <tr class="thead-dark">
             <td>Id</td>
-            <td>Imie</td>
+            <td>Imię</td>
             <td>Nazwisko</td>
             <td>Data urodzenia</td>
+            <td>Szczegóły</td>
             <td>Usuwanie</td>
             <td>Modyfikowanie</td>
+
         </tr>
         </thead>
         <tbody>
@@ -27,16 +28,18 @@
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.birthDate}"></td>
-            <td><a th:href="${'/thuser/id/' + user.userId}">Szczegoly</a></td>
-            <td><a th:href="${'/delete/' + user.userId}">Usun uzytkownika</a> </td>
-            <td><a th:href="${'/modify?id=' + user.userId}">Modyfikuj uzytkownika</a> </td>
+            <td><a th:href="${'/thuser/id/' + user.userId}">Szczegóły</a> </td>
+            <td><a th:href="${'/delete/' + user.userId}">Usuń użytkownika</a> </td>
+            <td><a th:href="${'/modify?id=' + user.userId}">Modyfikuj użytkownika</a> </td>
         </tr>
         </tbody>
     </table>
     <div class="row">
         <a href="/adduser" th:text="#{addUsr}"></a>
     </div>
+    <div class="row">
+        <a href="/wiek">Wybierz wg wieku</a>
+    </div>
 </div>
-
 </body>
 </html>

@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
 
 @Entity
 @Table(name = "uzytkownicy")
-@NamedQuery(name = "dateBetween", query = "select  u from User u where u.firstName = :name")
+@NamedQuery(name = "dateBetween", query = "select u from User u where u.birthDate >= :minDate and u.birthDate <= :maxDate ")
 public class User {
 
     @Id

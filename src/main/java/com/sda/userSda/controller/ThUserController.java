@@ -1,5 +1,6 @@
 package com.sda.userSda.controller;
 
+import com.sda.userSda.model.Age;
 import com.sda.userSda.model.User;
 import com.sda.userSda.service.UserService;
 import org.springframework.context.MessageSource;
@@ -61,12 +62,17 @@ public class ThUserController {
         return "redirect:/";
     }
 
-    @GetMapping("/usersin")
-    public String usersIn() {
-      //  List<String> users = List.of("Anna", "Kamil");
-      //  List<User> users1 = userService.findByFirstNames(users);
-        List<User> users1 = userService.getByName("Anna");
-        users1.forEach(System.out::println);
+    @GetMapping("/wiek")
+    public String wiek(Model model) {
+        model.addAttribute("age", new Age());
+        return "by-age";
+    }
+
+    @PostMapping("/usersin")
+    public String usersIn(Age age, Model model) {
+        List<User> userList = userService.getByAgeBetween(age.getMinAge(), age.getMaxAge());
+        userList.forEach(System.out::println);
+        model.addAttribute("users", userList);
         return "index";
     }
 

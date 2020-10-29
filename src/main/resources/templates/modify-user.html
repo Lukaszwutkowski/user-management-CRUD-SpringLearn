@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{modify}"></title>
@@ -9,25 +9,25 @@
 <body>
 <div class="container">
     <h1 th:text="#{modify}"></h1>
-    <form class="form-group" th:object="${user}" th:method="post" th:action="@{/modify}" >
-        <input type="text" th:field="*{userId}" th:hidden="true" >
+    <form class="form-group" th:object="${user}" th:method="post" th:action="@{/modify}">
+        <input th:field="*{userId}" type="text" th:hidden="true"/>
         <div>
             <label>Imie: </label>
             <input type="text" th:field="*{firstName}">
-            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color:red"></p>
+            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color: red"/>
         </div>
         <div>
             <label>Nazwisko: </label>
             <input type="text" th:field="*{lastName}">
-            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: #ff0000"></p>
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: red"/>
         </div>
         <div>
             <label>Data urodzenia: </label>
             <input type="date" th:field="*{birthDateTemp}">
-            <p th:if="${#fields.hasErrors('birthDateTemp')}" th:errors="*{birthDateTemp}" style="color: red"></p>
+            <p th:if="${#fields.hasErrors('birthDateTemp')}" th:errors="*{birthDateTemp}" style="color: red"/>
         </div>
         <div>
-            <button type="submit" class="btn-dark">Popraw</button>
+            <button type="submit" class="btn btn-dark">Popraw</button>
         </div>
     </form>
 </div>
