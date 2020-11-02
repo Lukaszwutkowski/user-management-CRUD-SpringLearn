@@ -40,6 +40,11 @@
     <div class="row">
         <a href="/wiek">Wybierz wg wieku</a>
     </div>
+    <div class="row">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout" class="btn btn-dark">
+        </form>
+    </div>
 </div>
 </body>
 </html>

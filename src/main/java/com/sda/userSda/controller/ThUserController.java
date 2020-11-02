@@ -4,6 +4,7 @@ import com.sda.userSda.model.Age;
 import com.sda.userSda.model.User;
 import com.sda.userSda.service.UserService;
 import org.springframework.context.MessageSource;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,14 +64,13 @@ public class ThUserController {
     }
 
     @GetMapping("/wiek")
-    public String wiek(Model model) {
-        model.addAttribute("age", new Age());
+    public String wiek() {
         return "by-age";
     }
 
-    @PostMapping("/usersin")
-    public String usersIn(Age age, Model model) {
-        List<User> userList = userService.getByAgeBetween(age.getMinAge(), age.getMaxAge());
+    @GetMapping("/usersin")
+    public String usersIn(@Param("min") int min, @Param("max") int max, Model model) {
+        List<User> userList = userService.getByAgeBetween(min, max);
         userList.forEach(System.out::println);
         model.addAttribute("users", userList);
         return "index";

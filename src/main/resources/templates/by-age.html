@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-<form class="form-group" th:object="${age}" th:action="@{/usersin}" th:method="post">
+<form class="form-group" th:action="@{/usersin}" th:method="get">
     <div>
         <label>Minimalny wiek: </label>
-        <input type="number" th:field="*{minAge}">
+        <input type="number" th:name="min">
     </div>
     <div>
         <label>Maksymalny wiek: </label>
-        <input type="text" th:field="*{maxAge}">
+        <input type="number" th:name="max">
     </div>
     <div>
         <button type="submit" class="btn btn-dark">Szukaj</button>
